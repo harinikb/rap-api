@@ -2,9 +2,21 @@
 __pycache__/
 *.py[codz]
 *$py.class
-
+*.pyc
 # C extensions
 *.so
+
+
+# Project specific
+uploads/
+chroma_db/
+*.pdf
+*.txt
+*.docx
+
+# IDE
+.vscode/
+.idea/
 
 # Distribution / packaging
 .Python
