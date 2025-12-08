@@ -59,19 +59,30 @@ class DocumentProcessor:
                     "content":chunk,
                     "metadata":{
                         "chunk_id":i,
-                        "file_name":file_name,
+                        "filename":file_name,
                         "element_type":"text"
                     }
                 })
             return result
     
     def get_document_info(self , file_path:str) -> Dict:
+        print("inside get doc")
         elements = partition(
             filename = file_path,
             strategy="fast"
             )
+        pages = [
+            el.metadata.page_number
+            for el in elements
+            if hasattr(el, "metadata") 
+            and hasattr(el.metadata, "page_number")
+            and el.metadata.page_number is not None
+        ]
+        print(f"Printing elements lenght {len(elements)}")
+        for el in elements:
+            print(f"This is {el.category}th element and the value is {el.text}")
         return {
             "total_elements" : len(elements),
             "element_types": list(set([str(el.category) for el in elements if hasattr(el, 'category')])),
-            "estimated_pages": max([el.metadata.page_number for el in elements if hasattr(el.metadata, 'page_number')], default=1)
+            "estimated_pages": max(pages) if pages else 1
         }

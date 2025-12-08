@@ -10,8 +10,16 @@ async def test():
     
     chunks = await processor.extract_and_chunk("test_doc.txt", "test_doc.txt")
     
-    print(f"✅ Created {len(chunks)} chunks")
+    print(f"Created {len(chunks)} chunks")
     print(f"First chunk: {chunks[0]['content'][:100]}...")
     print(f"Metadata: {chunks[0]['metadata']}")
+
+    info = processor.get_document_info("test_doc.txt")
+
+    # Print results
+    print("Document Info:")
+    print(f"  Total Elements: {info['total_elements']}")
+    print(f"  Element Types: {info['element_types']}")
+    print(f"  Estimated Pages: {info['estimated_pages']}")
 
 asyncio.run(test())
