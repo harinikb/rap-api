@@ -22,7 +22,7 @@ class Settings(BaseSettings):
     
     # Model Settings
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
-    llm_model: str = "mixtral-8x7b-32768"  # Groq model
+    llm_model: str = "llama-3.1-8b-instant"  # Groq model
     llm_temperature: float = 0.7
     llm_max_tokens: int = 1000
     
